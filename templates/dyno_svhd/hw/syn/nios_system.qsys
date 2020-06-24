@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element sys_clk
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element tse
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element tse.control_port
+   {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="EP4CE115F29C7" />
+ <parameter name="deviceFamily" value="Cyclone IV E" />
+ <parameter name="deviceSpeedGrade" value="7" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="hideFromIPCatalog" value="false" />
+ <parameter name="lockedInterfaceDefinition" value="" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="dynamometer.qpf" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="testBenchDutName" value="" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface name="clk" internal="sys_clk.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="sys_clk.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="tse_mac_mdio_connection"
+   internal="tse.mac_mdio_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tse_mac_rgmii_connection"
+   internal="tse.mac_rgmii_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tse_mac_status_connection"
+   internal="tse.mac_status_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tse_mm_control_port"
+   internal="tse.control_port"
+   type="avalon"
+   dir="end" />
+ <interface
+   name="tse_pcs_mac_rx_clock_connection"
+   internal="tse.pcs_mac_rx_clock_connection"
+   type="clock"
+   dir="end" />
+ <interface
+   name="tse_pcs_mac_tx_clock_connection"
+   internal="tse.pcs_mac_tx_clock_connection"
+   type="clock"
+   dir="end" />
+ <interface
+   name="tse_receive_clock_connection"
+   internal="tse.receive_clock_connection"
+   type="clock"
+   dir="end" />
+ <interface
+   name="tse_rx_avalon_st"
+   internal="tse.receive"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="tse_tx_avalon_st"
+   internal="tse.transmit"
+   type="avalon_streaming"
+   dir="end" />
+ <module name="sys_clk" kind="clock_source" version="16.1" enabled="1">
+  <parameter name="clockFrequency" value="100000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module name="tse" kind="altera_eth_tse" version="16.1" enabled="1">
+  <parameter name="AUTO_DEVICE" value="EP4CE115F29C7" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
+  <parameter name="core_variation" value="MAC_ONLY" />
+  <parameter name="deviceFamilyName" value="Cyclone IV E" />
+  <parameter name="eg_addr" value="14" />
+  <parameter name="ena_hash" value="false" />
+  <parameter name="enable_alt_reconfig" value="false" />
+  <parameter name="enable_ecc" value="false" />
+  <parameter name="enable_ena" value="32" />
+  <parameter name="enable_gmii_loopback" value="false" />
+  <parameter name="enable_hd_logic" value="true" />
+  <parameter name="enable_mac_flow_ctrl" value="true" />
+  <parameter name="enable_mac_vlan" value="false" />
+  <parameter name="enable_magic_detect" value="true" />
+  <parameter name="enable_ptp_1step" value="false" />
+  <parameter name="enable_sgmii" value="false" />
+  <parameter name="enable_shift16" value="true" />
+  <parameter name="enable_sup_addr" value="false" />
+  <parameter name="enable_timestamping" value="false" />
+  <parameter name="enable_use_internal_fifo" value="true" />
+  <parameter name="export_pwrdn" value="false" />
+  <parameter name="ext_stat_cnt_ena" value="false" />
+  <parameter name="ifGMII" value="RGMII" />
+  <parameter name="ing_addr" value="11" />
+  <parameter name="max_channels" value="1" />
+  <parameter name="mdio_clk_div" value="40" />
+  <parameter name="nf_phyip_rcfg_enable" value="false" />
+  <parameter name="phy_identifier" value="0" />
+  <parameter name="phyip_en_synce_support" value="false" />
+  <parameter name="phyip_pll_base_data_rate" value="1250 Mbps" />
+  <parameter name="phyip_pll_type" value="CMU" />
+  <parameter name="phyip_pma_bonding_mode" value="x1" />
+  <parameter name="starting_channel_number" value="0" />
+  <parameter name="stat_cnt_ena" value="true" />
+  <parameter name="transceiver_type" value="NONE" />
+  <parameter name="tstamp_fp_width" value="4" />
+  <parameter name="useMDIO" value="true" />
+  <parameter name="use_mac_clken" value="false" />
+  <parameter name="use_misc_ports" value="true" />
+ </module>
+ <connection
+   kind="clock"
+   version="16.1"
+   start="sys_clk.clk"
+   end="tse.control_port_clock_connection" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="sys_clk.clk"
+   end="tse.transmit_clock_connection" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="sys_clk.clk_reset"
+   end="tse.reset_connection" />
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
+</system>
