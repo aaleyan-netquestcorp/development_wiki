@@ -36,6 +36,7 @@ module tse_controller_tb(
 // Type Imports:
 //*****************************************************************************************
 typedef AlteraAvalon_Pkg::AvalonST_Bus AvalonST_Bus;
+typedef AlteraAvalon_Pkg::AvalonMM_Bus AvalonMM_Bus;
 
 
 //*****************************************************************************************
@@ -79,15 +80,8 @@ logic [SPEED_SENSOR_WIDTH-1:0] speed_sensor_driver = 'hdead;
 logic [ADC_WIDTH-1:0]          adc_driver = 'hbeef;
 
 AvalonST_Bus avalon_st_bus;
+AvalonMM_Bus avalon_mm_bus;
 
-
-typedef struct packed
-{
-    logic Ready;
-}   To_AvalonST_SourceStruct_TEST;
-    
-To_AvalonST_SourceStruct_TEST to_avalonst_source;
-//AvalonMM_Bus avalon_MM_bus;
 
 logic [511:0] write_data_512 [5]; 
 logic [3:0]   nibble;
@@ -137,8 +131,8 @@ tse_controller #(
 	.AVALON_ST_SOURCE_OUT_1(avalon_st_bus.from_source),
           
     //Avalon-MM Master:
-    .AVALON_MM_MASTER_IN_1 (),
-	.AVALON_MM_MASTER_OUT_1()
+    .AVALON_MM_MASTER_IN_1 (avalon_mm_bus.to_master),
+	.AVALON_MM_MASTER_OUT_1(avalon_mm_bus.from_master)
 );
 
 

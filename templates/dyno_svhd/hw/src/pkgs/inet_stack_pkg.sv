@@ -6,8 +6,9 @@ package AlteraAvalon_Pkg;
 
     localparam int ERROR_WIDTH = 2;
     localparam int DATA_WIDTH  = 32;
+    localparam int ADDR_WIDTH  = 8;
     
-    
+    // Avalon-MM Master: Define two collections of signals, one for each direction.
     typedef struct packed
     {
         logic [(ERROR_WIDTH-1):0 ] Error;
@@ -29,39 +30,26 @@ package AlteraAvalon_Pkg;
         From_AvalonST_SourceStruct from_source;
     }   AvalonST_Bus;
     
-//    -- Avalon-MM Master: Define two collections of signals, one for each direction.
-//    type from_AvalonMM_Master is record
-//        Address       : std_logic_vector(7 DOWNTO 0);
-//        Read          : std_logic;
-//        WriteData     : std_logic_vector(31 DOWNTO 0); 
-//        Write         : std_logic;
-//		--Tx_Data_xDO  : std_logic_vector(ST_DATA_WIDTH - 1 DOWNTO 0);
-//    end record ;
-//    type to_AvalonMM_Master is record
-//        ReadData      : std_logic_vector(31 DOWNTO 0);
-//        WaitRequest   : std_logic;
-//    end record ;
+    // Avalon-MM Master: Define two collections of signals, one for each direction.
+    typedef struct packed
+    {
+        logic [ADDR_WIDTH-1:0 ] Address;
+        logic Read;
+        logic [DATA_WIDTH-1:0 ] WriteData;
+        logic Write;
+    } From_AvalonMM_MasterStruct;
     
-//    typedef struct packed
-//    {
-//        logic [(ERROR_WIDTH-1):0 ] Error;
-//        logic Valid;
-//        logic Sop;
-//        logic Eop;
-//        logic Empty;
-//        logic [(DATA_WIDTH-1):0 ] Data;
-//    } From_AvalonST_MasterStruct;
-//    
-//    typedef struct packed
-//    {
-//        logic Ready;
-//    }   To_AvalonST_MasterStruct;
-//    
-//    typedef struct packed
-//    {
-//        To_AvalonST_MasterStruct   to_master;
-//        From_AvalonST_MasterStruct from_master;
-//    }   AvalonST_Bus; 
+    typedef struct packed
+    {
+        logic [DATA_WIDTH-1:0 ] ReadData;
+        logic WaitRequest;
+    }   To_AvalonMM_MasterStruct;
+    
+    typedef struct packed
+    {
+        To_AvalonMM_MasterStruct   to_master;
+        From_AvalonMM_MasterStruct from_master;
+    }   AvalonMM_Bus; 
     
     
 endpackage
